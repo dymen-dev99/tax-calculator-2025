@@ -1,5 +1,4 @@
-﻿# Exemple simple : calcul d'impôt sur revenu fictif
-def calculate_tax(income):
+﻿def calculate_tax(income):
     if income <= 20000:
         return income * 0.1
     elif income <= 50000:
