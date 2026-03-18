@@ -2,48 +2,45 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 221.2 83.2% 53.3%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 221.2 83.2% 53.3%;
-    --radius: 0.5rem;
-  }
+    /* ── CHAD DARK THEME ── */
+    --background: 0 0% 4%;
+    --foreground: 40 15% 91%;
 
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 217.2 91.2% 59.8%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 224.3 76.3% 48%;
+    --card: 0 0% 6.5%;
+    --card-foreground: 40 15% 91%;
+
+    --popover: 0 0% 8%;
+    --popover-foreground: 40 15% 91%;
+
+    /* Gold primary */
+    --primary: 42 65% 52%;
+    --primary-foreground: 0 0% 5%;
+
+    --secondary: 0 0% 10%;
+    --secondary-foreground: 0 0% 75%;
+
+    --muted: 0 0% 10%;
+    --muted-foreground: 0 0% 38%;
+
+    --accent: 42 65% 52%;
+    --accent-foreground: 0 0% 5%;
+
+    --destructive: 4 88% 58%;
+    --destructive-foreground: 40 15% 91%;
+
+    --border: 0 0% 12%;
+    --input: 0 0% 9%;
+    --ring: 42 65% 52%;
+    --radius: 0.2rem;
+
+    /* Custom chad tokens */
+    --gold: 42 65% 52%;
+    --gold-bright: 44 95% 62%;
+    --gold-dim: 42 40% 35%;
+    --green-neon: 152 100% 40%;
+    --red-hot: 4 88% 58%;
+    --blue-cool: 214 80% 60%;
+    --surface-2: 0 0% 9%;
   }
 }
 
@@ -52,14 +49,284 @@
     border-color: hsl(var(--border));
     box-sizing: border-box;
   }
+
   body {
     background-color: hsl(var(--background));
     color: hsl(var(--foreground));
-    font-family: system-ui, -apple-system, sans-serif;
+    font-family: 'DM Sans', system-ui, sans-serif;
     margin: 0;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
+
   #root {
     min-height: 100vh;
   }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--background));
+  }
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--gold-dim));
+    border-radius: 2px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--gold));
+  }
+
+  /* Focus rings */
+  [data-radix-collection-item]:focus,
+  button:focus-visible,
+  input:focus-visible,
+  select:focus-visible {
+    outline: 1px solid hsl(var(--gold) / 0.6);
+    outline-offset: 2px;
+  }
+}
+
+/* ── ANIMATIONS ── */
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+@keyframes pulse-gold {
+  0%, 100% { opacity: 1; box-shadow: 0 0 8px hsl(var(--gold) / 0.4); }
+  50% { opacity: 0.7; box-shadow: 0 0 20px hsl(var(--gold) / 0.7); }
+}
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes blink-cursor {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes count-in {
+  from { opacity: 0; transform: scale(0.96); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 0.06em;
+  }
+
+  .font-mono-chad {
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+  }
+
+  .text-gold {
+    color: hsl(var(--gold));
+  }
+
+  .text-gold-bright {
+    color: hsl(var(--gold-bright));
+  }
+
+  .text-green-neon {
+    color: hsl(var(--green-neon));
+  }
+
+  .text-red-hot {
+    color: hsl(var(--red-hot));
+  }
+
+  .text-blue-cool {
+    color: hsl(var(--blue-cool));
+  }
+
+  .border-gold {
+    border-color: hsl(var(--gold) / 0.4);
+  }
+
+  .border-gold-bright {
+    border-color: hsl(var(--gold));
+  }
+
+  .bg-surface-2 {
+    background-color: hsl(var(--surface-2));
+  }
+
+  .gold-glow {
+    box-shadow: 0 0 20px hsl(var(--gold) / 0.25), inset 0 0 40px hsl(var(--gold) / 0.03);
+  }
+
+  .animate-fade-in-up {
+    animation: fade-in-up 0.4s ease forwards;
+  }
+
+  .animate-count-in {
+    animation: count-in 0.3s ease forwards;
+  }
+
+  /* Corner bracket decoration */
+  .corner-brackets {
+    position: relative;
+  }
+  .corner-brackets::before,
+  .corner-brackets::after {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+  }
+  .corner-brackets::before {
+    top: -1px;
+    left: -1px;
+    border-top: 1px solid hsl(var(--gold));
+    border-left: 1px solid hsl(var(--gold));
+  }
+  .corner-brackets::after {
+    bottom: -1px;
+    right: -1px;
+    border-bottom: 1px solid hsl(var(--gold));
+    border-right: 1px solid hsl(var(--gold));
+  }
+
+  /* Gradient top bar for cards */
+  .card-gold-bar {
+    position: relative;
+    overflow: hidden;
+  }
+  .card-gold-bar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, hsl(var(--gold)) 50%, transparent 100%);
+    opacity: 0.7;
+  }
+
+  .card-red-bar {
+    position: relative;
+    overflow: hidden;
+  }
+  .card-red-bar::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, hsl(var(--red-hot)) 50%, transparent 100%);
+    opacity: 0.8;
+  }
+
+  .card-green-bar {
+    position: relative;
+    overflow: hidden;
+  }
+  .card-green-bar::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, hsl(var(--green-neon)) 50%, transparent 100%);
+    opacity: 0.7;
+  }
+
+  .card-blue-bar {
+    position: relative;
+    overflow: hidden;
+  }
+  .card-blue-bar::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, hsl(var(--blue-cool)) 50%, transparent 100%);
+    opacity: 0.7;
+  }
+}
+
+/* ── OVERRIDE SHADCN/RADIX COMPONENTS FOR CHAD THEME ── */
+
+/* Inputs */
+input[type="number"],
+input[type="text"],
+input[type="email"] {
+  background-color: hsl(var(--input)) !important;
+  border-color: hsl(var(--border)) !important;
+  color: hsl(var(--foreground)) !important;
+  font-family: 'JetBrains Mono', monospace !important;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+input[type="number"]:focus,
+input[type="text"]:focus {
+  border-color: hsl(var(--gold) / 0.5) !important;
+  box-shadow: 0 0 0 2px hsl(var(--gold) / 0.1) !important;
+}
+
+/* Select trigger — ciblé via le rôle Radix réel (pas data-slot qui n'existe pas ici) */
+[data-radix-select-trigger] {
+  background-color: hsl(var(--input)) !important;
+  border-color: hsl(var(--border)) !important;
+  font-family: 'DM Sans', sans-serif !important;
+}
+
+[data-radix-select-trigger]:hover {
+  border-color: hsl(var(--gold) / 0.4) !important;
+}
+
+/* Select content/popover */
+[role="listbox"] {
+  background-color: hsl(0 0% 9%) !important;
+  border-color: hsl(var(--border)) !important;
+}
+
+[role="option"]:focus,
+[role="option"][data-highlighted] {
+  background-color: hsl(var(--gold) / 0.08) !important;
+  color: hsl(var(--gold-bright)) !important;
+}
+
+/* Tabs */
+[role="tablist"] {
+  background-color: hsl(var(--surface-2)) !important;
+  border: 1px solid hsl(var(--border)) !important;
+}
+
+[role="tab"][data-state="active"] {
+  background-color: hsl(var(--gold) / 0.12) !important;
+  color: hsl(var(--gold-bright)) !important;
+  font-family: 'Bebas Neue', sans-serif !important;
+  letter-spacing: 0.06em !important;
+}
+
+[role="tab"] {
+  font-family: 'Bebas Neue', sans-serif !important;
+  letter-spacing: 0.06em !important;
+  font-size: 0.85rem !important;
+  color: hsl(var(--muted-foreground)) !important;
+  transition: color 0.15s ease !important;
+}
+
+[role="tab"]:hover {
+  color: hsl(var(--foreground)) !important;
+}
+
+/* Switch — géré directement par les classes Tailwind data-[state] dans switch.tsx */
+
+/* Badge overrides */
+.badge-chad {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.05em;
+  border-radius: 2px;
+}
+
+/* Separator — sélecteur précis pour éviter de cibler TabsList qui a aussi data-orientation="horizontal" */
+[role="separator"][data-orientation="horizontal"] {
+  background-color: hsl(var(--border)) !important;
 }
